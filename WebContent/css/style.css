@@ -1,0 +1,203 @@
+@charset "UTF-8";
+
+
+/* 첫번째 방
+-height / min-height
+-reset : body(margin 을 리셋)
+
+	 두번째 방
+-height / min-height : 100%, inherit
+-박스를 정렬 : width 고정 ->  margin-left, right, top, bottom
+-margin / padding / border
+-DevTool(F12)
+
+	 세번째 방
+-floating, clear-fix
+*/
+
+
+/* ---reset--- */
+body{
+	margin : 0px;
+}
+
+ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+li{
+	display: block;
+}
+
+h1{
+	margin: 0px;
+}
+
+a{
+	text-decoration: none;
+	color: inherit;	
+}
+/*----------------------------abstract style----------------------------------*/
+/*----------------------------hor-menu----------------------------------*/
+.hor-menu{
+		display: inline-block;
+	}
+	
+	.hor-menu > h1{
+		display: none;
+	}
+	
+	.hor-menu > ul{
+		overflow: auto;
+	}
+	
+		.hor-menu > ul > li{
+		float: left;
+	}
+	
+		.hor-menu.first-pad-none > ul > li:first-child{
+		padding-left: 0px;
+		background: none;
+	}/*.hor-menu && first-pad-none 과 같음 */
+	
+	
+/*----------------------------Button----------------------------------*/
+.btn{
+	
+}
+
+.btn-default{
+	background: #759d2a;
+	display : inline-block;
+	min-width: 71px;
+	color : #ffffff;
+	text-align: center;
+	padding: 3px 8px 3px 8px;
+	border-radius: 8px;
+}
+
+.btn-warning{
+	
+}
+
+.btn-cancer{
+	
+}
+
+
+/*----------------------------header----------------------------------*/
+#header{
+	height: 70px;
+	/* background: yellow; */
+}
+
+	.main-menu{
+		font-family: "맑은 고딕", "고딕", "sans-serif";
+		font-size: 15px;
+		font-weight: bold;
+		color: #000000;
+	}
+	
+	.main-menu > ul > li{
+		padding-left: 24px;
+		background: url("../images/bg-main-menu-vsp.png") no-repeat 13px center;	
+	}
+	
+/* ---------------------member-menu---------------------------- */	
+.member-menu{
+	font-family: "맑은 고딕", "고딕", "sans-serif";
+	font-size: 10px;
+	font-weight: bold;
+}
+	
+	.member-menu > ul > li{
+		padding-left: 9px;
+		background: url("../images/bg-member-menu-sp.png") no-repeat 4px center;	
+	}
+	
+	
+/*----------------------------visual----------------------------------*/
+#visual{
+	height: 171px;
+	/* background: red; */
+	/* background: #313131 url("../images/bg-visual.png") no-repeat center; */
+	border-top: 3px solid #8CBA34;
+}
+
+#body{
+	min-height: 300px;
+	/* background: green; */
+	border-top: 5px solid #8CBA34;
+	margin-top: 1px;
+}
+
+#footer{
+	height: 100px;
+	/* background: blue; */
+}
+
+.root-container{
+	height : 100%;
+	/* height : inherit; */
+	/* min-height : 100%; */
+	min-height : inherit;
+	width: 960px;
+	/* background: pink; */
+	/* opacity : 0.5; */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#body > .root-container{
+	display: flex;
+	flex-direction: row;
+}
+
+#body .root-container{
+	background : url("../images/bg-body.png") repeat-y center;
+}
+#aside{
+	/* background: yellow; */
+	min-height : inherit;
+	min-width: 205px;
+	/* float: left; */
+	background: url("../images/bg-aside-title.png") no-repeat left top;
+}
+
+#main{
+	/* background: white; */
+	box-sizing:border-box;
+	min-height: inherit;
+	min-width: 755px;
+	padding-left: 35px;
+	padding-top: 45px;
+	padding-bottom: 40px;
+	/* padding : 35px 0px 0px 45px; */
+	/* float: left; */
+}
+
+/* #main  > section > h1{
+	border : 1px solid red;
+	width: 100px;
+	height: 100px;
+	background: url("../images/logo.png") no-repeat left top;
+	background-attachment: local;
+	넘치는 경우 overflow  !!!
+	overflow: scroll;
+	background-size: cover;
+	background-size: contain;
+	
+} */
+ /* 상자는 병렬식이라서 직렬방식으로 바꾸기위한 꼼수 
+.clear-fix{
+}*/
+
+/* 가상의 막내가 하나 더 생기는 것 */
+.clear-fix::after{
+	content : "안녕하세요 ?";
+	display: block;
+	clear: both;
+	height: 0px;
+	overflow: hidden;
+} 

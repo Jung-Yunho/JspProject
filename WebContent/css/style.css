@@ -38,6 +38,8 @@ a{
 	text-decoration: none;
 	color: inherit;	
 }
+
+
 /*----------------------------abstract style----------------------------------*/
 /*----------------------------hor-menu----------------------------------*/
 .hor-menu{
@@ -60,29 +62,79 @@ a{
 		padding-left: 0px;
 		background: none;
 	}/*.hor-menu && first-pad-none 과 같음 */
+
 	
-	
-/*----------------------------Button----------------------------------*/
-.btn{
+/*----------------------------title style----------------------------------*/
+.title{
+	font-family: "맑은고딕", "고딕", sans-serif;
+	font-size: 21px;
+	font-weight: bold;
+	color: #646464;
+	padding-left: 25px;
+	background: url("../images/icon-main-title.png") no-repeat left center;
+}
+
+.title{
 	
 }
 
-.btn-default{
-	background: #759d2a;
+.title{
+	
+}
+
+
+/*----------------------------Button----------------------------------*/
+.btn,
+.button{
 	display : inline-block;
 	min-width: 71px;
 	color : #ffffff;
 	text-align: center;
 	padding: 3px 8px 3px 8px;
 	border-radius: 8px;
+	cursor: pointer;
+	/* input override  */
+	border: 0px;
 }
 
-.btn-warning{
+.text-button:hover,
+.btn-text:hover{
+	color: red;
+	background: yellow;
+}
+
+.image-button,
+.btn-img{
+	/* override for image button */
+	border-radius: 0px;
+	text-indent: -999px;
+	overflow:hidden;		/*indent와 overflow를 이용한 텍스트 숨기기  */
+
+}
+
+.search-button,
+.btn-search{
+	background: url("../images/btn-zoom.png") no-repeat center;
+	min-width : 31px;
+	height: 25px;	
+	
+	/* color: black;
+	border : 1px solid red; */
+}
+
+.btn-default,
+.default-button{
+	background: #759d2a;
+}
+
+.btn-warning,
+.warning-button{
 	
 }
 
-.btn-cancer{
-	
+.btn-cancel,
+.cancer-button{
+	background: #000000;
 }
 
 
@@ -101,7 +153,7 @@ a{
 	
 	.main-menu > ul > li{
 		padding-left: 24px;
-		background: url("../images/bg-main-menu-vsp.png") no-repeat 13px center;	
+		background: url("../images/bg-main-menu-vsp.png") no-repeat 13px ;	
 	}
 	
 /* ---------------------member-menu---------------------------- */	

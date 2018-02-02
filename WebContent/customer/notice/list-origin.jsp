@@ -1,12 +1,29 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <% 
+		String sql = "SELECT ROWNUM AS NUM, NOTICE. * FROM NOTICE";
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+	
+		String url = "jdbc:oracle:thin:@211.238.142.251:1521:orcl";
+		Connection con = DriverManager.getConnection(url, "c##sist", "dclass");
+	
+		Statement st = con.createStatement();
+	
+		ResultSet rs = st.executeQuery(sql);
+	%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>NOTICE</title>
 <link href="../../css/style.css" type = "text/css" rel = "stylesheet"/>
-<style type="text/css">
 
-</style>
 </head>
 <body>
 	<header id="header">
@@ -109,46 +126,52 @@
 		
 			<section>
 				<h1>공지사항 검색 목록</h1>
-				<table border="1">
-					<tr>
-						<td>번호</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>작성일</td>
-						<td>조회수</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td><a href =""><span class="color-notice">사이트 오픈</span>이 일주일 후로 미루어졌습니다.</a></td>
-						<td>admin</td>
-						<td>2017-12-18</td>
-						<td>63</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td><a href ="">12월 17일 늦은 저녁에 서비스 교체가 있습니다.</a></td>
-						<td>admin</td>
-						<td>2017-11-12</td>
-						<td>145</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td><a href ="">당분간 수강신청을 받지 않으니 양해 부탁드립니다</a></td>
-						<td>admin</td>
-						<td>2017-10-12</td>
-						<td>216</td>
-					</tr>
-				</table>
-			<div>
-				1/1 pages 
-			</div>
-			<div>
-				<a href="" class="button btn-text default-button">글쓰기 버튼</a>
-				<a href="" class="button btn-text btn-cancel">테스트</a>
-			</div>
-			<div>
-				이전1다음
-			</div>
+				<table class = "table">
+					<thead>
+						<tr>
+							<td>번호</td>
+							<td>제목</td>
+							<td>작성자</td>
+							<td>작성일</td>
+							<td>조회수</td>
+						</tr>
+					</thead>	
+					
+					<tbody>	
+						<% while(rs.next()){ 
+							int rownum = rs.getInt("NUM");
+							String title = rs.getString("TITLE");
+							String writer_id = rs.getString("WRITER_ID");
+							String 	reg_date = rs.getString("REG_DATE");
+							String hit = rs.getString("HIT");
+						%>	
+						
+						<tr>
+							<td><%=rownum %></td>
+							<td><a href =""><span class="color-notice"><%=title%></span></a></td>
+							<td><%=writer_id %></td>
+							<td><%=reg_date %></td>
+							<td><%=hit %></td>
+						</tr>
+						<% } %>
+						</tbody>
+						<%
+						rs.close();
+						st.close();
+						con.close();
+						%>
+						
+					</table>
+					<div>
+						1/1 pages 
+					</div>
+					<div>
+						<a href="" class="button btn-text default-button">글쓰기 버튼</a>
+						<a href="" class="button btn-text btn-cancel">테스트</a>
+					</div>
+					<div>
+						이전1다음
+					</div>
 			</section>
 		</section>
 	</main>

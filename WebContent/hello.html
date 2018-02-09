@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>안녕하세요 ? 예제</title>
+<style>
+	form{
+		/* transform-origin: left top;
+		transform : rotate(45deg); */
+		/* transform : rotate(-45deg); */
+	}
+	
+	#btn-submit+input{			/* ~  + 는 동생 / 동생들이다 */
+		transition-duration : 5s;
+		transition-property : width;
+		/* height: 20px; */
+		width: 100px;
+	}
+	
+	#btn-submit:hover+input{
+		/* height: 200px; */
+		width: 300px;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<form action="GoToHell">
+			<div>
+				<label>"안녕하세요" 를 몇 번 듣고싶으세요 ?</label>
+			</div>
+			
+			<div>
+				<input type="text" name = "cnt"/>
+				<input id ="btn-submit" type="submit" value = "출력"/>
+				<input />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

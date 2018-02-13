@@ -14,15 +14,37 @@
 	List<Notice> list = noticeDao.getList();
 %>
 	
-
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>NOTICE</title>
 <link href="../../css/style.css" type = "text/css" rel = "stylesheet"/>	
-<script>
-	alert("Hello Javascript");
+<script type="text/javascript">
+	
+	/* alert("Hello Javascript"); */
+	
+	/* var exam = new Object();
+	exam["kor:"];
+	exam["eng"]; */
+	
+	var list = [
+		{kor:30, eng:40, math:60},
+		{kor:40, eng:50, math:70},
+		{kor:50, eng:60, math:80}
+	];
+	alert(list[1].kor);
+	
+	
+	var exma = {};
+	exam.kor = 30;
+	exam.eng = 40;
+	alert(exam.kor);
+	
+	//var exam = {"kor":30, "eng":70, "math":80};			선언 방식들
+	//var exam = {kor:30, eng:70,math:80};
+	
 </script>
 </head>
 <body>

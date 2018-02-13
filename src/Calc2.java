@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/add")
+@WebServlet("/add2")
 public class Calc2 extends HttpServlet{
 
 	@Override
@@ -39,7 +39,7 @@ public class Calc2 extends HttpServlet{
 			out.write("</head>");
 			out.write("<body>");
 			out.write("	<div>");
-			out.write("		<form action = \"add\" method = \"post\">");
+			out.write("		<form action = \"add2\" method = \"post\">");
 			out.write("			<div>");
 			out.write("				<label>더하실 숫자 2개를 입력해주세요.</label>");
 			out.write("			</div>");

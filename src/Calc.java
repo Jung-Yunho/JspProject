@@ -28,8 +28,8 @@ public class Calc extends HttpServlet{
 			y = Integer.parseInt(temp2);
 		}
 		int sum = x + y;
-			/*값을 전달,요청하는 것은 GET (ex. 검색 등의 방식 , Select)
-			 값을 전달만하는 것은 POST(ex. 회원가입 / 수정 등의 방식)*/
+			/*값을 전달,요청하는 것은 GET (ex. 검색 등의 방식 , Select) 대상요청
+			 값을 전달만하는 것은 POST(ex. 회원가입 / 수정 등의 방식) 행위요청*/
 			out.write("<!DOCTYPE html>");
 			out.write("<html>");
 			out.write("<head>");

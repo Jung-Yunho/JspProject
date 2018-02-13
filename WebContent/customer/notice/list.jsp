@@ -1,3 +1,4 @@
+<%@page import="com.newlecture.jspweb.dao.JdbcNoticeDao"%>
 <%@page import="com.newlecture.jspweb.entity.Notice"%>
 <%@page import="java.util.List"%>
 <%@page import="com.newlecture.jspweb.dao.NoticeDao"%>
@@ -9,7 +10,7 @@
     pageEncoding="UTF-8"%>
     
 <% 
-	NoticeDao noticeDao = new NoticeDao();
+	NoticeDao noticeDao = new JdbcNoticeDao();
 	List<Notice> list = noticeDao.getList();
 %>
 	
@@ -20,7 +21,9 @@
 <meta charset="UTF-8">
 <title>NOTICE</title>
 <link href="../../css/style.css" type = "text/css" rel = "stylesheet"/>	
-
+<script>
+	alert("Hello Javascript");
+</script>
 </head>
 <body>
 	<!-- <header id="header">

@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.newlecture.jspweb.entity.Member;
 
-public class MemberDao {
+public class JdbcMemberDao {
 public List<Member> getList() throws ClassNotFoundException, SQLException {
 		
 		String sql = "SELECT * FROM MEMBER";

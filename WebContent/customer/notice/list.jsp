@@ -1,4 +1,5 @@
-<%@page import="com.newlecture.jspweb.dao.JdbcNoticeDao"%>
+<%@page import="com.newlecture.jspweb.entity.NoticeView"%>
+<%@page import="com.newlecture.jspweb.dao.jdbc.JdbcNoticeDao"%>
 <%@page import="com.newlecture.jspweb.entity.Notice"%>
 <%@page import="java.util.List"%>
 <%@page import="com.newlecture.jspweb.dao.NoticeDao"%>
@@ -11,7 +12,8 @@
     
 <% 
 	NoticeDao noticeDao = new JdbcNoticeDao();
-	List<Notice> list = noticeDao.getList();
+	List<Notice> list = noticeDao.getList();  
+	/* List<NoticeView> list = NoticeView.getList(); */
 %>
 	
  
@@ -22,28 +24,6 @@
 <title>NOTICE</title>
 <link href="../../css/style.css" type = "text/css" rel = "stylesheet"/>	
 <script type="text/javascript">
-	
-	/* alert("Hello Javascript"); */
-	
-	/* var exam = new Object();
-	exam["kor:"];
-	exam["eng"]; */
-	
-	var list = [
-		{kor:30, eng:40, math:60},
-		{kor:40, eng:50, math:70},
-		{kor:50, eng:60, math:80}
-	];
-	alert(list[1].kor);
-	
-	
-	var exma = {};
-	exam.kor = 30;
-	exam.eng = 40;
-	alert(exam.kor);
-	
-	//var exam = {"kor":30, "eng":70, "math":80};			선언 방식들
-	//var exam = {kor:30, eng:70,math:80};
 	
 </script>
 </head>

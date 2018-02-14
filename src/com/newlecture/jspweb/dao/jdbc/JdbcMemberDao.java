@@ -1,4 +1,4 @@
-package com.newlecture.jspweb.dao;
+package com.newlecture.jspweb.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

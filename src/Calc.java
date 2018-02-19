@@ -2,11 +2,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/add")
 public class Calc extends HttpServlet{
@@ -46,15 +48,23 @@ public class Calc extends HttpServlet{
 			out.write("			</div>");
 			
 			out.write("			<div>");
-			out.write("				<input type = \"submit\" id = \"btn-submit\" value = \"덧셈\"/>");
+			out.write("				<input type = \"submit\" id = \"btn-submit\" name = \"btn\" value = \"덧셈\"/>");
+			out.write("				<input type = \"submit\" id = \"btn-Application\" name = \"btn\" value = \"Application\"/>");
+			out.write("				<input type = \"submit\" id = \"btn-Session\" name = \"btn\" value = \"Session\"/>");
+			out.write("				<input type = \"submit\" id = \"btn-Cookie\" name = \"btn\" value = \"Cookie\"/>");
 			out.write("			</div>");
 			
 			out.write("			<div>");
-			out.printf("두 수의 합 : %d", result);
-			out.write("			</div>");
+			out.printf("				두 수의 합 : %d", result);
+			out.write("				<input type = \"hidden\" name = \"result\" value = \"" + result + "\"/>");
 			out.write("			</div>");
 			out.write("		</form>");
 			out.write("	</div>");
+			
+			out.write("	<div>");
+			out.write("		<a href = \"mypage\"> 마이페이지 </a>");
+			out.write("	</div>");
+			
 			out.write("</body>");
 			out.write("</html>");
 	}
@@ -64,24 +74,65 @@ public class Calc extends HttpServlet{
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
+		
 		
 		int result = 0;
 		
-			int x = 0;
-			int y = 0;
+		int x = 0;
+		int y = 0;
+		
+		String btn = "덧셈";
+		
+		
+		String temp1 = request.getParameter("x");
+		if(temp1 != null && !temp1.equals(""))
+			x = Integer.parseInt(temp1);
+		
+		String temp2 = request.getParameter("y");
+		if(temp2 != null && !temp2.equals(""))
+			y = Integer.parseInt(temp2);
+	
+		// 만약에 btn으로 전달된 값이 있다면
+		// 그 값을 btn 변수에 대입
+		String btn_ = request.getParameter("btn");
+		if(btn_ != null && !btn_.equals(""))
+			btn = btn_;
+
+		switch(btn) {
+		
+			case "덧셈":
+				System.out.println("테스트");
+				result = x + y;
+				break;
 			
-			String temp1 = request.getParameter("x");
-			if(temp1 != null && !temp1.equals(""))
-				x = Integer.parseInt(temp1);
+			case "Application":{
+				ServletContext application = request.getServletContext();
+				String result_ = request.getParameter("result");
+				application.setAttribute("result", result_);
+				//application.setAttribute("result", result);
+			}
+				break;
 			
-			String temp2 = request.getParameter("y");
-			if(temp2 != null && !temp2.equals(""))
-				y = Integer.parseInt(temp2);
-			
-			result = x + y;
-			/*response.sendRedirect("add?x=&y=&result="+result);*/
-			response.sendRedirect(String.format("add?x=%d&y=%d&result=%d",x,y,result));
+			case "Session":{
+				HttpSession session = request.getSession();
+				String result_ = request.getParameter("result");
+				session.setAttribute("result", result_);
+				//session.setAttribute("result", result);
+			}
+				break;
+				
+			case "cookie":{
+				//HttpCookie cookie = request.getCookies();
+				//cookie.setAttribute("result", result);
+			}
+				break;
+		}
+		
+		result = x + y;
+		/*response.sendRedirect("add?x=&y=&result="+result);*/
+		response.sendRedirect(String.format("add?x=%d&y=%d&result=%d",x,y,result));
 	}
 	
 	

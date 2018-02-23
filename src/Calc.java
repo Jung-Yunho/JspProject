@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -110,6 +111,7 @@ public class Calc extends HttpServlet{
 			case "Application":{
 				ServletContext application = request.getServletContext();
 				String result_ = request.getParameter("result");
+				//int result_ = Integer.parseInt(request.getParameter("result"));
 				application.setAttribute("result", result_);
 				//application.setAttribute("result", result);
 			}
@@ -117,17 +119,20 @@ public class Calc extends HttpServlet{
 			
 			case "Session":{
 				HttpSession session = request.getSession();
-				String result_ = request.getParameter("result");
+				//String result_ = request.getParameter("result");
+				int result_ = Integer.parseInt(request.getParameter("result"));
 				session.setAttribute("result", result_);
 				//session.setAttribute("result", result);
 			}
 				break;
 				
-			case "cookie":{
-				//HttpCookie cookie = request.getCookies();
-				//cookie.setAttribute("result", result);
+			case "Cookie":{ 
+				String result_ = request.getParameter("result");
+				Cookie cookie = new Cookie("result", result_);
+				cookie.setMaxAge(60*60*24);			// 만료시간 정해주기
+				response.addCookie(cookie);
 			}
-				break;
+			break;
 		}
 		
 		result = x + y;
@@ -136,7 +141,7 @@ public class Calc extends HttpServlet{
 	}
 	
 	
-	/*protected void service1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/*protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

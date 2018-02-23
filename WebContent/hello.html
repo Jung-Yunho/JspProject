@@ -2,40 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>안녕하세요 ? 예제</title>
-<style>
-	form{
-		/* transform-origin: left top;
-		transform : rotate(45deg); */
-		/* transform : rotate(-45deg); */
-	}
-	
-	#btn-submit+input{			/* ~  + 는 동생 / 동생들이다 */
-		transition-duration : 5s;
-		transition-property : width;
-		+
-		width: 100px;
-	}
-	
-	#btn-submit:hover+input{
-		/* height: 200px; */
-		width: 300px;
-	}
-</style>
+<title>Insert title here</title>
 </head>
 <body>
 	<div>
-		<form action="GoToHell" method="get"> <!-- method = get or post -->
+		<form action="hello">
 			<div>
-				<label>"안녕하세요" 를 몇 번 듣고싶으세요 ?</label>
+				<label>"안녕하세요"를 몇 번 듣고 싶으세요?</label>
 			</div>
-			
 			<div>
-				<input type="text" name = "cnt"/>
-				<input id ="btn-submit" type="submit" value = "출력"/>
-				<input />
+				<input type="text"  />
+				
+				<input id="btn-submit" type="submit" value="출력" />
 			</div>
 		</form>
+		
+		<a href="notice-list?pg=3&k=java" >공지사항목록</a>
 	</div>
 </body>
 </html>

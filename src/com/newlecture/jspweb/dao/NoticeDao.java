@@ -8,7 +8,7 @@ import com.newlecture.jspweb.entity.NoticeView;
 public interface NoticeDao{ 
 	
 	//오버로드
-	List<Notice> getList();
+	List<NoticeView> getList();
 	List<Notice> getList(String query);
 	List<Notice> getList(int page);
 	List<Notice> getList(int page, String field, String query);
@@ -19,6 +19,9 @@ public interface NoticeDao{
 	//이전글, 다음글
 	Notice getPrev(String id);
 	Notice getNext(String id);
+	int delete(String id);
+	int update(Notice notice);
+	int insert(Notice notice);
 
 	/*int insert(Notice notice);			//좋아요 테이블에 대한 데이터 축적하기
 	int update(Notice notice);		//좋아요 컬럼에 대한 데이터를 get 하고 난 뒤 update

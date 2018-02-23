@@ -220,4 +220,22 @@ public List<NoticeView> getList(){
 		return 0;
 	}
 
+	@Override
+	public List<Notice> getList(String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Notice> getList(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Notice> getList(int page, String field, String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

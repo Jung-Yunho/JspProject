@@ -1,10 +1,9 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.HttpCookie;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,12 +22,14 @@ public class MyPage extends HttpServlet{
 		int s = 0;
 		int c = 0;
 		
-		
+
 		ServletContext application = request.getServletContext();
 		Object a_ = application.getAttribute("result");
 		if(a_ != null)
 			a = Integer.parseInt(String.valueOf(a_));
+			//a = Integer.parseInt(a_.toString());
 			//a = (Integer)a_;
+		
 		/*String a_ = String.valueOf(application.getAttribute("result"));
 		if(a_ != null && !a_.equals(""))
 			a = Integer.parseInt(a_);*/
@@ -38,11 +39,17 @@ public class MyPage extends HttpServlet{
 		if(!s_.equals("null")&& !s_.equals(""))
 			s = Integer.parseInt(s_);
 		
+		Cookie[] cookies = request.getCookies();  
+        String c_ ="";
+        for(Cookie cook : cookies) {
+           if(cook.getName().equals("result")) {
+              c_ = cook.getValue();
+              break;
+            }
+         }
+         c = Integer.parseInt(c_);
+			
 		
-		/*HttpCookie cookie = request.getCookies();
-		String c_ String.valueOf(cookie.get)
-		if(c_ != null && !c_.equals(""))
-			c = Integer.parseInt(c_);*/
 		
 		out.write("<html>");
 		out.write("	<body>");

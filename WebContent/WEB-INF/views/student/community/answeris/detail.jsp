@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%
+<%-- <%
 	/*-------------------------------Controler----------------------------------------------*/
 	String id = request.getParameter("id");
 	
@@ -15,7 +15,7 @@
 	
 	/*-------------------------------View----------------------------------------------*/
 	/*View 는 사이사이 출력된 화면*/
-%>
+%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -231,37 +231,43 @@
 						<tr>
 							<th>제목</th>
 							<td class="text-align-left text-indent text-strong text-orange" colspan="3">
-								<%=answeris.getTitle() %>
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getTitle() %> --%>
+								${answeris.title}
 							</td>
 						</tr>
 						<tr>
 							<th>오류가 발생할 때 사용한 언어</th>
 							<td colspan="3" class="text-align-left text-indent">
-								<%=answeris.getLanguage() %>			
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getLanguage() %> --%>
+								${answeris.language}			
 							</td>							
 						</tr>
 						<tr>
 							<th>오류가 발생할 때 사용한 플랫폼</th>
 							<td colspan="3" class="text-align-left text-indent">
-								<%=answeris.getPlatform() %>			
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getPlatform() %> --%>	
+								${answeris.platform}		
 							</td>							
 						</tr>
 						<tr>
 							<th>오류가 발생할 때 사용한 실행환경</th>
 							<td colspan="3" class="text-align-left text-indent">
-								<%=answeris.getRuntime()%>		
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getRuntime()%> --%>
+								${answeris.runtime}		
 							</td>
 						</tr>										
 						<tr>
 							<th>오류 코드</th>
 							<td class="text-align-left text-indent text-strong text-orange" colspan="3">
-								<%=answeris.getErrorCode() %>
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getErrorCode() %> --%>
+								${answeris.errorCode}
 							</td>
 						</tr>
 						<tr>
 							<th>오류 메시지</th>
 							<td class="text-align-left text-indent text-strong text-orange" colspan="3">
-								<%=answeris.getErrorMessage() %>
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getErrorMessage() %> --%>
+								${answeris.errorMessage}
 							</td>
 						</tr>	
 												
@@ -270,7 +276,8 @@
 						</tr>
 						<tr>
 							<td colspan="4" class="text-align-left" style="padding:10px 0px 10px 10px;">
-								<%=answeris.getSituation() %>
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getSituation() %> --%>
+								${answeris.situation}
 							</td>
 						</tr>
 						<tr>
@@ -278,7 +285,8 @@
 						</tr>
 						<tr>
 							<td colspan="4" class="text-align-left" style="padding:10px 0px 10px 10px;">
-								<%=answeris.getTriedToFix()%>
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getTriedToFix()%> --%>
+								${answeris.triedToFix}
 							</td>
 						</tr>
 						<tr>
@@ -286,7 +294,8 @@
 						</tr>
 						<tr>
 							<td class="text-align-left" colspan="4" style="padding:10px 0px 10px 10px;">
-								<%=answeris.getReason() %>
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getReason() %> --%>
+								${answeris.reason}
 							</td>
 						</tr>
 						
@@ -295,7 +304,8 @@
 						</tr>
 						<tr>
 							<td class="text-align-left" colspan="4" style="padding:10px 0px 10px 10px;">
-								<%=answeris.getHowToFix() %>
+								<%-- <%=((AnswerisView)request.getAttribute("answeris")).getHowToFix() %> --%>
+								${answeris.howToFix}
 							</td>
 						</tr>
 						

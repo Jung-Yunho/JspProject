@@ -1,4 +1,5 @@
 
+<%@page import="com.jspprj.entity.Answeris"%>
 <%@page import="com.jspprj.entity.AnswerisView"%>
 <%@page import="com.jspprj.dao.jdbc.JdbcAnswerisDao"%>
 <%@page import="com.jspprj.dao_.AnswerisDao"%>
@@ -8,11 +9,11 @@
     pageEncoding="UTF-8"%>
 
 
-<%
+<%-- <%
    AnswerisDao answerisDao = new JdbcAnswerisDao();
    List<AnswerisView> list = answerisDao.getList();
 
-%>
+%> --%>
 
 
 <!DOCTYPE html>
@@ -256,23 +257,27 @@
                <tbody>
                
                
-               <% for(AnswerisView a :list){%>
+              <%--  <% for(AnswerisView a :list){%> --%>
                <tr>
-                  <td class="text-align-left text-indent text-ellipsis"><a href="detail.jsp?id=<%=a.getId()%>"><%= a.getTitle() %></a></td>
-                  <td><%= a.getLanguage() %></td>
-                  <td class="text-ellipsis"><%= a.getPlatform() %></td>
+                  <td class="text-align-left text-indent text-ellipsis">
+                  		<a href="detail.jsp?id=<%-- <%=a.getId()%> --%>${list[1].id}">
+                  		<%-- <%= a.getTitle() %> --%>${list[1].title }</a></td>
+                  <td><%-- <%= a.getLanguage() %> --%>${list[1].language }
+                  		   <%-- <%=((List<Answeris>)request.getAttribute("list")).get(0).getLanguage() %> --%></td>
+                  <td class="text-ellipsis"><%-- <%= a.getPlatform() %> --%>${list[1].platform}</td>
                   <td>
-                     <%= a.getRegDate() %>
+                     <%-- <%= a.getRegDate() %> --%>
+                     ${list[1].regDate }
                   </td>
                </tr>
-               <% } %>
+               <%-- <% } %> --%>
                
                
-               <%if(list.size()==0) { %>
+             <%--   <%if(list.size()==0) { %> --%>
                <tr>
                   <td colspan="4"> 작성된 글이 없습니다.</td>
                </tr>
-               <% } %>
+              <%--  <% } %> --%>
                
                </tbody>
             </table>

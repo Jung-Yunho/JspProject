@@ -49,5 +49,4 @@ public class AnswerisView extends Answeris
 		this.commentCount = commentCount;
 	}
 	
-
 }

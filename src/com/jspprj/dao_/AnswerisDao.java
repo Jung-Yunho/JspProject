@@ -9,11 +9,12 @@ import com.jspprj.entity.AnswerisView;
 //JdbcAnswerisDao / mybatisAnswerisDao/ springAnswerisDao구현하기
 public interface AnswerisDao 
 {
-	public int insert(Answeris answeris);
-	public int update(Answeris answeris);
-	public int delete(String id);
+	 int insert(Answeris answeris);
+	 int update(Answeris answeris);
+	 int delete(String id);
 	
-	public List<AnswerisView> getList();
-	public AnswerisView get(String id);
+	List<AnswerisView> getList(int page);
+	 AnswerisView get(String id);
+	 int getCount();
 
 }

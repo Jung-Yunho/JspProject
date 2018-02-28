@@ -187,9 +187,13 @@ public class JdbcAnswerisDao implements AnswerisDao
 	}
 
 	@Override
-	public List<AnswerisView> getList() 
+	public List<AnswerisView> getList(int page) 
 	{
-		String sql = "SELECT * FROM ANSWERIS_VIEW ORDER BY REG_DATE DESC";
+		/*String sql = "SELECT * FROM ANSWERIS_VIEW ORDER BY REG_DATE DESC";*/
+		int start = 1+(page-1)*15;	//1,16,31,46
+		int end = page*15;
+		
+		String sql = "SELECT * FROM ANSWERIS_VIEW WHERE NUM BETWEEN ? AND ?";
 		
 		
 		//list에 answerisview 값을 저장하기 위한 준비
@@ -202,7 +206,8 @@ public class JdbcAnswerisDao implements AnswerisDao
 			Connection con = DriverManager.getConnection(url, "c##sist","dclass");
 			//쿼리문을 물음표로 설정할시 preparedstatement 사용
 			PreparedStatement st = con.prepareStatement(sql);
-			//st.setString(1, id); //자료형에 따라서 입력되는 형태가 달라짐
+			st.setInt(1, start); //자료형에 따라서 입력되는 형태가 달라짐
+			st.setInt(2, end);
 			
 			ResultSet rs = st.executeQuery(); //prepared 사용시 resultset에서 sql 사용 x
 			
@@ -314,5 +319,49 @@ public class JdbcAnswerisDao implements AnswerisDao
 		return answeris;
 	}
 
+	@Override
+	public int getCount() {
+		
+			 String sql = "SELECT COUNT(ID) COUNT FROM ANSWERIS";
 
-}
+			 int count = 0;
+			 
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					
+					String url = "jdbc:oracle:thin:@211.238.142.251:1521:orcl";
+					Connection con = DriverManager.getConnection(url, "c##sist","dclass");
+					//쿼리문을 물음표로 설정할시 preparedstatement 사용
+					Statement st = con.createStatement();
+					
+					ResultSet rs = st.executeQuery(sql); //prepared 사용시 resultset에서 sql 사용 x
+					
+					
+					
+					if(rs.next())
+						count = rs.getInt("count");
+				
+					
+				
+					rs.close();
+					st.close();
+					con.close(); 
+					
+				} catch (ClassNotFoundException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				
+				
+			
+			return count;
+		}
+
+	}
+
+

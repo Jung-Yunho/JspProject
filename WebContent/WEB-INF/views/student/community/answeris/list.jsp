@@ -15,6 +15,8 @@
 
 %> --%>
 
+<%@ taglib prefix="my" uri="http://www.newlecture.com/jsp/tags/control"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -256,21 +258,21 @@
                </thead>
                <tbody>
                
-               
+			<c:forEach var="ai" items="${list}">
               <%--  <% for(AnswerisView a :list){%> --%>
                <tr>
                   <td class="text-align-left text-indent text-ellipsis">
-                  		<a href="detail.jsp?id=<%-- <%=a.getId()%> --%>${list[1].id}">
-                  		<%-- <%= a.getTitle() %> --%>${list[1].title }</a></td>
-                  <td><%-- <%= a.getLanguage() %> --%>${list[1].language }
+                  		<a href="detail?id=${ai.id}"><%-- <%=a.getId()%> --%><%-- <%= a.getTitle() %> --%>${ai.title }</a></td>
+                  <td><%-- <%= a.getLanguage() %> --%>${ai.language }
                   		   <%-- <%=((List<Answeris>)request.getAttribute("list")).get(0).getLanguage() %> --%></td>
-                  <td class="text-ellipsis"><%-- <%= a.getPlatform() %> --%>${list[1].platform}</td>
+                  <td class="text-ellipsis"><%-- <%= a.getPlatform() %> --%>${ai.platform}</td>
                   <td>
                      <%-- <%= a.getRegDate() %> --%>
-                     ${list[1].regDate }
+                     ${ai.regDate }
                   </td>
                </tr>
                <%-- <% } %> --%>
+			</c:forEach>
                
                
              <%--   <%if(list.size()==0) { %> --%>
@@ -285,33 +287,53 @@
          
          <div class="indexer margin-top align-right">
             <h3 class="hidden">현재 페이지</h3>
-            <div><span class="text-orange text-strong">1</span> / 1 pages</div>
+            <div><span class="text-orange text-strong">${param.p == null ? 1 : param.p }</span> / ${lastPage } pages</div>
          </div>
          
          <div class="margin-top text-align-right">
-            <a href="reg.jsp" class="btn-text btn-default">글쓰기</a>
+            <a href="reg" class="btn-text btn-default">글쓰기</a>
          </div>
 
          <div class="margin-top align-center pager">
       
    <div>
       
+      <c:if test="${startNum > 0 }">
+      <span class="btn btn-prev" ><a href="">이전</a></span>
+      </c:if>
       
+      <c:if test="${startNum <= 0 }">
       <span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
+      </c:if>
       
    </div>
    <ul class="-list- center">
       
          
             
-               <li><a class="-text- orange bold" href="?p=1&t=&q=" >1</a></li>
+               <!-- <li><a href="?p=1&t=&q=" >1</a></li>
+               <li><a href="?p=2&t=&q=" >2</a></li>
+               <li><a href="?p=3&t=&q=" >3</a></li>
+               <li><a href="?p=4&t=&q=" >4</a></li>
+               <li><a href="?p=5&t=&q=" >5</a></li> -->
+               
+               <c:forEach var="i" begin="1" end="5">
+               		<c:if test="${i <= lastPage}">
+               			<li><a href="?p=${i}&t=&q=" >${i }</a></li>
+               		</c:if>
+               </c:forEach>
       
       
    </ul>
    <div>
       
-      
+      	<c:if test="${startNum > 0 }">
+         <span class="btn btn-next" ><a href="?p=${startNum }">다음</a></span>
+         </c:if>
+         
+         <c:if test="${startNum <= 0 }">
          <span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
+         </c:if>
       
    </div>
    

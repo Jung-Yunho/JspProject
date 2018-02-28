@@ -185,7 +185,7 @@
          </ul>
       </div>
       
-      <form action="reg-proc.jsp" method="post" >
+      <form method="post" >
       <div class="margin-top first">
             <h3 class="hidden">오류 내용</h3>
             <table class="table">
@@ -267,7 +267,7 @@
          
          <div class="margin-top text-align-center">
             <input type="submit" class="btn-text btn-default" value="문의글 등록하기" />
-            <a class="btn-text btn-cancel" href="list.jsp">취소</a>
+            <a class="btn-text btn-cancel" href="list">취소</a>
          </div>
          </form>
                   

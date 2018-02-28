@@ -9,7 +9,6 @@
 	String id = request.getParameter("id");
 	
 	AnswerisDao answerisDao = new JdbcAnswerisDao();
-	
 	/*-------------------------------Model----------------------------------------------*/
 	AnswerisView answeris = answerisDao.get(id);
 	

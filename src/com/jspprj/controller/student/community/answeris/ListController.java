@@ -4,12 +4,17 @@ package com.jspprj.controller.student.community.answeris;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tiles.TilesContainer;
+import org.apache.tiles.access.TilesAccess;
+import org.apache.tiles.request.ApplicationContext;
+import org.apache.tiles.request.servlet.ServletRequest;
+import org.apache.tiles.request.servlet.ServletUtil;
 
 import com.jspprj.dao.jdbc.JdbcAnswerisDao;
 import com.jspprj.dao_.AnswerisDao;
@@ -39,7 +44,7 @@ public class ListController extends HttpServlet{
 				   lastPage++;
 		   }
 		   
-		   int off = page%5-1;
+		   int off = (page-1)%5;
 		   int startNum = page - off;
 		   
 		   List<AnswerisView> list = answerisDao.getList(page);
@@ -49,9 +54,22 @@ public class ListController extends HttpServlet{
 		   request.setAttribute("lastPage", lastPage);
 		   request.setAttribute("startNum", startNum);
 		   
-		   RequestDispatcher dispatcher = 
+		   /*RequestDispatcher dispatcher = 
 				   request.getRequestDispatcher("/WEB-INF/views/student/community/answeris/list.jsp");
+		   dispatcher.forward(request, response);*/
 		   
-		   dispatcher.forward(request, response);
+		   
+		     // tiles 2.x 버전에서 사용하던 방법
+		      /*TilesContainer container = TilesAccess.getContainer(
+		              request.getSession().getServletContext());
+		      container.render("student.community.answeris.list", request, response);
+		      container.endContext(request, response);*/
+		      
+		      // tiles 3.x 버전에서 사용하는 방법
+		      ApplicationContext applicationContext = ServletUtil
+		            .getApplicationContext(request.getSession().getServletContext());
+		      TilesContainer container = TilesAccess.getContainer(applicationContext);
+		      ServletRequest servletRequest = new ServletRequest(applicationContext, request, response);
+		      container.render("student.community.answeris.list", servletRequest);
 	}
 }

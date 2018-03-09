@@ -18,7 +18,7 @@ public class Answeris
 	private String howToFix;
 	private Date regDate;
 	private int hit;
-	   
+	private String attachedFile;   
 	   
 	   public Answeris() {
 		   
@@ -27,7 +27,7 @@ public class Answeris
 
 	public Answeris(String id, String title, String language, String platform, String runtime,  String errorCode,
 			String errorMessage, String situation, String triedToFix, String reason, String writerId, String howToFix,
-			Date regDate, int hit) 
+			Date regDate, int hit, String attachedFile) 
 	{
 		this.id = id;
 		this.title = title;
@@ -43,6 +43,7 @@ public class Answeris
 		this.howToFix = howToFix;
 		this.regDate = regDate;
 		this.hit = hit;
+		this.attachedFile = attachedFile;
 	}
 
 //Insert시 필요없는 항목 삭제
@@ -61,6 +62,7 @@ public class Answeris
 		this.reason = reason;
 		this.writerId = writerId;
 		this.howToFix = howToFix;
+		//this.attachedFile = attachedFile;
 	}
 
 
@@ -228,6 +230,16 @@ public class Answeris
 	public void setHit(int hit) 
 	{
 		this.hit = hit;
+	}
+
+
+	public String getAttachedFile() {
+		return attachedFile;
+	}
+
+
+	public void setAttachedFile(String attachedFile) {
+		this.attachedFile = attachedFile;
 	}
 	  
 	

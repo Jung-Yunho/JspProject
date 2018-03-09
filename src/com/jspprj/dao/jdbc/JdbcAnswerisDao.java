@@ -33,9 +33,10 @@ public class JdbcAnswerisDao implements AnswerisDao
 		 		"    tried_to_fix," + 
 		 		"    reason," + 
 		 		"    how_to_fix," + 
-		 		"    writer_id" + 
+		 		"    writer_id," + 
+		 		"    attached_File" + 
 		 		") VALUES ((SELECT NVL(MAX(TO_NUMBER(ID)),0)+1 ID FROM ANSWERIS)"
-		 		+ ",?,?,?,?,?,?,?,?,?,?,?)";
+		 		+ ",?,?,?,?,?,?,?,?,?,?,?,?)";
 		 
 		 int result = 0;
 			try {
@@ -57,6 +58,7 @@ public class JdbcAnswerisDao implements AnswerisDao
 				st.setString(9, answeris.getReason());
 				st.setString(10, answeris.getHowToFix());
 				st.setString(11, answeris.getWriterId());
+				st.setString(12, answeris.getAttachedFile());
 				//insert에서는 resultset 필요없음
 				/*ResultSet rs = st.executeQuery(sql);
 				
@@ -231,6 +233,7 @@ public class JdbcAnswerisDao implements AnswerisDao
 						rs.getString("HOW_TO_FIX"),
 						rs.getDate("REG_DATE"),
 						rs.getInt("HIT"),
+						rs.getString("ATTACHED_FILE"),
 						rs.getInt("COMMENT_COUNT")
 						);
 				
@@ -294,6 +297,7 @@ public class JdbcAnswerisDao implements AnswerisDao
 							rs.getString("HOW_TO_FIX"),
 							rs.getDate("REG_DATE"),
 							rs.getInt("HIT"),
+							rs.getString("ATTACHED_FILE"),
 							rs.getInt("COMMENT_COUNT")
 							);
 				}

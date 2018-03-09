@@ -28,10 +28,11 @@ public class AnswerisView extends Answeris
 							String howToFix,
 							Date regDate, 
 							int hit, 
+							String attachedFile,
 							int commentCount) 
 	{
 		super(id,  title, language, platform, runtime, errorCode, errorMessage, situation, triedToFix, reason, writerId,
-				howToFix, regDate, hit);
+				howToFix, regDate, hit, attachedFile);
 		
 		this.commentCount = commentCount;
 		

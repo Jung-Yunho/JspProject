@@ -111,6 +111,7 @@
         var idInput = document.querySelector("input[name='id']");
         var photoButton = document.querySelector("#photo-button");
         var file = document.querySelector("#photo-file-button");
+        var photo = document.querySelector("#photo");
         /*=======유효성 검사를 위한 필드==========================================================*/
         
            var idChecked =false;
@@ -148,11 +149,12 @@
         };  */ 
          
         file.onchange = function(e){
-        	var files = file.files;
-            
-            var info = "name :" + files[0].name;
-            info += ", size : " + files[0].size;
-            info += ", type : " + files[0].type;
+        	//var files = file.files;
+            var file1 = file.files[0];
+        	
+            var info = "name :" + file1.name;
+            info += ", size : " + file1.size;
+            info += ", type : " + file1.type;
             alert(info);
             
             /*for(var key in files[0])
@@ -161,12 +163,33 @@
             //      '/' 구분자로 문자열을 잘라서 앞에 문자열의 내용으로 비교
             //      "image/png" -> "image", "png"
 
-            var typeParts = files[0].type.split("/");
+            var typeParts = file1.type.split("/");
+            //var typeParts = file1[0].type.split("/");
             
-            if(typeParts[0] != "images"){
+            if(typeParts[0] != "image")
                 alert("지원되는 이미지 파일이 아닙니다.");
-                return;
-            }
+
+            var reader = new FileReader();
+            reader.onload = function(evt){
+                photo.src = evt.target.result;
+            };
+            reader.readAsDataURL(file1);
+            
+            
+            // data1 = urlencoded
+            // var data = "name = newlec&type=a";, name = newlec&type=a;
+
+            // data2 = multipart
+            //var data = new FormData();
+            //data.append("key", value);
+
+            //var request = new XMLHttpRequest();
+            //request.onload = function(){ //이벤트
+            
+            //};
+
+            //request.open("POST", "idcheck?id="+memberId,true); //true 비동기 = default값
+            //request.send(data);
         };
 
         idCheckButton.onclick = function(){

@@ -20,7 +20,7 @@ import com.jspprj.dao_.AnswerisDao;
 import com.jspprj.entity.AnswerisView;
 
 @WebServlet("/student/community/answeris/detail")		// 실제 디렉토리가 아니라 구분 짓기 위한 디렉토리 설정
-public class DeatilController extends HttpServlet{
+public class DetailController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

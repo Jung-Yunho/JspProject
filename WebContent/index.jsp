@@ -36,7 +36,7 @@
 					<li><a href="guide">학습가이드</a></li>
 					
 					<li><a href="course">강좌선택</a></li>
-					<li><a href="answeris/index.jsp">AnswerIs</a></li>					
+					<li><a href="student/index">AnswerIs</a></li>					
 				</ul>
 			</nav>
 
@@ -78,7 +78,7 @@
 				<nav id="member-menu" class="linear-layout">
 					<h1 class="hidden">고객메뉴</h1>
 					<ul class="linear-layout">
-						<li><a href="student/index.jsp"><img
+						<li><a href="student/index"><img
 								src="images/txt-mypage.png" alt="마이페이지" /></a></li>
 						<li><a href="/customer/notice"><img
 								src="images/txt-customer.png" alt="고객센터" /></a></li>

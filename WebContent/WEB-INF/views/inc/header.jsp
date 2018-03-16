@@ -50,15 +50,22 @@
                <ul>
                   <li><a href="${ctx }/index">HOME</a></li>
                   
+                  <c:if test="${empty sessionScope.id }">
+                  <li><a href = "${ctx}/member/login">로그인</a></li>
+                  </c:if>
+                  
+                  <c:if test="${not empty sessionScope.id }">
+                  <li><a href = "${ctx}/member/logout">로그아웃</a></li>
+                  </c:if>
                   
                   
-                     <li>
+                    <%--  <li>
                         <form action="${ctx }/logout" method="post">
                            <input type="hidden" name="" value="" />
                            <input type="submit" value="로그아웃" style="border:none;background: none;vertical-align: middle;font-size: 10px;color:#979797;font-weight: bold;" />
                            
                         </form>                        
-                     </li>
+                     </li> --%>
                   
 
                   
@@ -70,9 +77,9 @@
             <nav id="member-menu" class="linear-layout">
                <h1 class="hidden">고객메뉴</h1>
                <ul class="linear-layout">
-                  <li><a href="${ctx }/index.jsp"><img
+                  <li><a href="${ctx }/student/index"><img
                         src="${ctx }/images/txt-mypage.png" alt="마이페이지" /></a></li>
-                  <li><a href="${ctx }/customer/notice.jsp"><img
+                  <li><a href="${ctx }/customer/notice"><img
                         src="${ctx }/images/txt-customer.png" alt="고객센터" /></a></li>
                </ul>
             </nav>

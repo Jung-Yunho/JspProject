@@ -61,9 +61,13 @@ public class RegController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		
 		Answeris answeris = new Answeris();
 		
 		// 파일시스템-------------------------------------------------------------
+		
 		String pathUrl = "/student/upload";
 		
 		String pathSystem = request
@@ -89,38 +93,40 @@ public class RegController extends HttpServlet{
 		*/
 		
 		// 2. 버퍼, 스트림을 이용했을때
-		Part part = request.getPart("attached");
+		
+		Part part = null;
+		
+		if(request.getPart("attached").equals("")) {
+		part = request.getPart("attached");
 		//request.getParts();
 		
-		InputStream is = part.getInputStream();
 		String fname = part.getSubmittedFileName();
 		
 		byte[] buf = new byte[1024];
 		
+		InputStream is = part.getInputStream();
 		FileOutputStream fos = new FileOutputStream(pathSystem+File.separator+fname);
 		
 		int size = 0;
-		
-		while((size = is.read(buf, 0, size)) != -1)
+		System.out.println("하이~");
+		while((size = is.read(buf, 0, 1024)) != -1)
 			fos.write(buf, 0, size);
 		
 		is.close();
 		fos.close();
-		
+		answeris.setAttachedFile(fname);
+		}		
 		//파일시스템-------------------------------------------------------------
 		
 		answeris.setTitle(request.getParameter("title"));
 		answeris.setSituation(request.getParameter("situation"));
 		//answeris.setAttachedFile(part.getSubmittedFileName());
-		answeris.setAttachedFile(fname);
 		answeris.setWriterId("newlec");
 		
 		AnswerisDao answerisDao = new JdbcAnswerisDao();
 		answerisDao.insert(answeris);
 		
 		response.sendRedirect("list");
-		
-		
 		//String fileName = req.getFilesystemName("attached");
 		//response.getWriter().println(fileName);
 		

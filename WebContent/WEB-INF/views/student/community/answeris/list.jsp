@@ -55,6 +55,18 @@
                </thead>
                <tbody>
                
+            <template id="row">
+                  <tr id="template">
+                        <td class="text-align-left text-indent text-ellipsis"><a href="detail?id="></a></td>
+                        <td>                        
+                        </td>
+                        <td class="text-ellipsis"></td>
+                        <td>
+                        
+                        </td>
+                  </tr>
+                  </template>
+
 			<c:forEach var="ai" items="${list}">
               <%--  <% for(AnswerisView a :list){%> --%>
                <tr>
@@ -139,23 +151,43 @@
       </main>
 
 
+
+
+
+
+
+
       <script>
             window.addEventListener("load", function(){
                   var tbody = document.querySelector(".notice .table tbody");
                   var origin = tbody.querySelector("tr:first-child");
                   var cloneButton1 = document.querySelector(".btn-clone1");
 
+                  // /answeris/list-data
                   cloneButton1.onclick = function(){
-				alert("Test");
                         var answerises = [{id:"1", title:"aaa"}, {id:"2", "title": "bbb"}];
 
-                        for(var i=0; i<answerises.length; i++){
-                              var copy = origin.cloneNode(true);
-                              var titleTd = copy.querySelector("td:nth-child(1)");
-                              titleTd.textContent = answerises[i].title;
+                        if ('content' in document.createElement('template')) {
+
+                              var t = document.querySelector('#row'),
+                              tds = t.content.querySelectorAll("td");
+                              tds[0].textContent = answerises[0].id;
+                              tds[1].textContent = answerises[0].title;
                               
-                              tbody.appendChild(copy);
+                              var clone = document.importNode(t.content, true);
+                              tbody.appendChild(clone);
                         }
+
+				// alert("Test");
+                        // var answerises = [{id:"1", title:"aaa"}, {id:"2", "title": "bbb"}];
+
+                        // for(var i=0; i<answerises.length; i++){
+                        //       var copy = origin.cloneNode(true);
+                        //       var titleTd = copy.querySelector("td:nth-child(1)");
+                        //       titleTd.textContent = answerises[i].title;
+                              
+                        //       tbody.appendChild(copy);
+                        // }
 
                   };             
 
